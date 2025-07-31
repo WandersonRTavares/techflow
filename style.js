@@ -18,3 +18,21 @@ form.addEventListener("submit", (e) => {
     }
 });
 
+// Renderiza as tarefas na tela
+function renderizarTarefas() {
+    list.innerHTML = "";
+    tarefas.forEach((tarefa, index) => {
+        const li = document.createElement("li");
+        li.textContent = tarefa;
+
+        const botao = document.createElement("button");
+        botao.textContent = "Excluir";
+        botao.onclick = () => {
+            tarefas.splice(index, 1);
+            salvarETornarVisivel();
+        };
+
+        li.appendChild(botao);
+        list.appendChild(li);
+    });
+}
