@@ -5,7 +5,14 @@ const list = document.getElementById("task-list");
 
 let tarefas = [];
 
-
+// Carrega tarefas do localStorage ao iniciar
+window.onload = () => {
+    const dados = localStorage.getItem("tarefas");
+    if (dados) {
+        tarefas = JSON.parse(dados);
+        renderizarTarefas();
+    }
+};
 
 // Adiciona uma nova tarefa
 form.addEventListener("submit", (e) => {
@@ -35,4 +42,10 @@ function renderizarTarefas() {
         li.appendChild(botao);
         list.appendChild(li);
     });
+}
+
+// Salva no localStorage e atualiza a lista
+function salvarETornarVisivel() {
+    localStorage.setItem("tarefas", JSON.stringify(tarefas));
+    renderizarTarefas();
 }
